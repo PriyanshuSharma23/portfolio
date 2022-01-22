@@ -28,6 +28,18 @@
     <div class="main-container">
       <div class="container space">
         <h1 class="skills-title">My Skills</h1>
+        <div
+          style="
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <img style="width: 2rem" src="assets/img/lightbulb.png" alt="" />
+          <i>Protip: Click on the icons :)</i>
+        </div>
+
         <div class="skill-section">
           <!-- Skill 1 -->
           <!-- C++ -->
@@ -59,8 +71,8 @@
                   </span>
                   ,
                   <span style="color: #3dbe29">Recursion</span>,
-                  <span style= "color: #22CB5C">Back Tracking </span>and
-                  <span style="color: #6EC72D">Dyanamic Programming</span> works
+                  <span style="color: #22cb5c">Back Tracking </span>and
+                  <span style="color: #6ec72d">Dyanamic Programming</span> works
                   in C++ I am currently learning Data Structures.
                 </div>
               </div>
@@ -100,19 +112,46 @@
             </div>
           </div>
         </div>
-        <div
-          style="
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          "
-        >
-          <img style="width: 2rem" src="assets/img/lightbulb.png" alt="" />
-          <i>Protip: Click on the icons :)</i>
-        </div>
+        <h1 class="skills-title">My Projects</h1>
+
+        <!-- Project 1 -->
       </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer class="foot">
+      <div class="contme" style="font-size: 2rem">Contact Me</div>
+      <div class="icon-tray">
+        <a id="contact" class="icon" onclick="copier()">
+          <img src="/assets/img/smartphone.png" alt="smartphone" />
+        </a>
+        <a
+          href="https://www.instagram.com/priyanshusharma12201/"
+          target="_blank"
+          class="icon"
+        >
+          <img src="assets/img/instagram.png" alt="" />
+        </a>
+        <a
+          href="https://github.com/PriyanshuSharma23"
+          target="_blank"
+          class="icon"
+        >
+          <img src="assets/img/github.png" alt="github" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/priyanshu-sharma-467971188/"
+          target="_blank"
+          class="icon"
+        >
+          <img src="assets/img/linkedin.png" alt="linkedin" />
+        </a>
+        <a href="mailto:inbox.priyanshu@gmail.com" class="icon" type="_blank"
+          ><img src="assets/img/email.png" alt="email"
+        /></a>
+      </div>
+    </footer>
+
     <script>
       const openModalButtons = document.querySelectorAll("[data-modal-target]");
       const closeModalButtons = document.querySelectorAll(
@@ -151,6 +190,11 @@
         if (modal == null) return;
         modal.classList.remove("active");
         overlay.classList.remove("active");
+      }
+
+      function copier() {
+        navigator.clipboard.writeText("9871010603");
+        alert("Number copied to clipboard");
       }
     </script>
   </body>
