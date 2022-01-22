@@ -30,15 +30,128 @@
         <h1 class="skills-title">My Skills</h1>
         <div class="skill-section">
           <!-- Skill 1 -->
+          <!-- C++ -->
           <div class="skill">
-            <img src="assets/img/c-.png" class="skill-image" alt="c++" />
+            <button data-modal-target="#modal1" class="skill-modal-button">
+              <img src="assets/img/c-.png" class="skill-image" alt="c++" />
+            </button>
+            <div class="modal" id="modal1">
+              <div class="modal-header">
+                <div class="title">C++</div>
+                <button data-close-button class="close-button">&times;</button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <b>Started Learning</b>: 2 November 2021 <br />
+                  <b>Level</b>:
+                  <span style="color: #4dd637; font-weight: bold"
+                    >Almost Intermediate</span
+                  >
+                </div>
+                <br />
+                <div class="decription">
+                  <b>More Details</b>: <br />
+                  I use C++ for any
+                  <span style="color: #e07c24">Competitve Programming</span> I
+                  do. I know how
+                  <span style="color: #3dbe29"
+                    >Object Oriented Programming
+                  </span>
+                  ,
+                  <span style="color: #3dbe29">Recursion</span>,
+                  <span style= "color: #22CB5C">Back Tracking </span>and
+                  <span style="color: #6EC72D">Dyanamic Programming</span> works
+                  in C++ I am currently learning Data Structures.
+                </div>
+              </div>
+            </div>
+
+            <div id="overlay"></div>
           </div>
           <!-- Skill 2 -->
+          <!-- JavaScript -->
           <div class="skill">
-            <img src="assets/img/js.png" class="skill-image" alt="c++" />
+            <button data-modal-target="#modal2" class="skill-modal-button">
+              <img src="assets/img/js.png" class="skill-image" alt="c++" />
+            </button>
+            <div class="modal" id="modal2">
+              <div class="modal-header">
+                <div class="title">JavaScript</div>
+                <button data-close-button class="close-button">&times;</button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <b>Started Learning</b>: 12 September 2021 <br />
+                  <b>Level</b>:
+                  <span style="color: #e8bd0d; font-weight: bold"
+                    >Intermediate</span
+                  >
+                </div>
+                <br />
+                <div class="decription">
+                  <b>More Details</b>: <br />
+                  JavaScript is my favourite language. I use it in all my
+                  projects. I also know
+                  <span style="color: #3944f7">TypeScript</span> which is a very
+                  handy addition, when working on bigger projects with
+                  frameworks like react.
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+        <div
+          style="
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <img style="width: 2rem" src="assets/img/lightbulb.png" alt="" />
+          <i>Protip: Click on the icons :)</i>
         </div>
       </div>
     </div>
+    <script>
+      const openModalButtons = document.querySelectorAll("[data-modal-target]");
+      const closeModalButtons = document.querySelectorAll(
+        "[data-close-button]"
+      );
+      const overlay = document.getElementById("overlay");
+
+      openModalButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const modal = document.querySelector(button.dataset.modalTarget);
+          openModal(modal);
+        });
+      });
+
+      overlay.addEventListener("click", () => {
+        const modals = document.querySelectorAll(".modal.active");
+        modals.forEach((modal) => {
+          closeModal(modal);
+        });
+      });
+
+      closeModalButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const modal = button.closest(".modal");
+          closeModal(modal);
+        });
+      });
+
+      function openModal(modal) {
+        if (modal == null) return;
+        modal.classList.add("active");
+        overlay.classList.add("active");
+      }
+
+      function closeModal(modal) {
+        if (modal == null) return;
+        modal.classList.remove("active");
+        overlay.classList.remove("active");
+      }
+    </script>
   </body>
 </html>
