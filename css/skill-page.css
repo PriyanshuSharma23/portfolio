@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap");
+
+.skills-title {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+  font-size: 3rem;
+  line-height: 1;
+  font-family: "Outfit", sans-serif;
+  text-align: center;
+}
+
+.skill-section {
+  display: grid;
+  /* justify-content: space-around; */
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  padding: 2rem 0;
+}
+
+.skill {
+  position: relative;
+}
+
+.skill img {
+  width: 20rem;
+  border-radius: 1rem;
+  transition: width ease-out 100ms;
+}
+
+.skill img:hover {
+  width: 19.1rem;
+}
+
+.skill::after {
+  /* content: ""; */
+  position: absolute;
+  left: calc(50% - 4rem);
+  top: calc(50% - 2rem);
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  color: #758283;
+  background-color: ivory;
+  padding: 0.5rem 1rem;
+}
+.skill:hover::after {
+  content: "click me";
+}
+
+@media only screen and (max-width: 1380px) {
+  .skill-section {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
