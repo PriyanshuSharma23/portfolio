@@ -145,7 +145,7 @@ body {
 
 .icon-tray {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 2rem;
   transition: all ease-out 300ms;
 }
@@ -160,11 +160,11 @@ body {
   margin: 0 10px;
 }
 
-.email {
+/* .email {
   font-size: 2rem;
   color: white;
   text-decoration: none;
-}
+} */
 
 .contme {
   font-size: 2rem;
@@ -228,6 +228,9 @@ body {
   }
   .navbar {
     padding: 12px 20px; /* 3 5 */
+  }
+  .portfolio-pic {
+    width: 15rem;
   }
 
   .pad {
