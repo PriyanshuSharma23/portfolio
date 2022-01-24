@@ -4,12 +4,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2rem;
+    margin: 2rem;
 }
 
 .warning-text {
     font-family: 'Play', sans-serif;
     margin-left: 0.5rem;
+    color: yellow;
 }
 
 .space-hobbies {
@@ -62,6 +63,7 @@
     .hobby-card {
         flex-direction: column;
         margin: 0.25rem;
+        width: 90%;
     }
     .hobby-content {
         border-top: 10px rgb(131, 131, 131) dotted;
