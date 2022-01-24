@@ -23,6 +23,7 @@
 .skill-modal-button {
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .skill img {
