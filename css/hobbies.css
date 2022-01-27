@@ -10,7 +10,8 @@
 .warning-text {
     font-family: 'Play', sans-serif;
     margin-left: 0.5rem;
-    color: yellow;
+    font-size: 1.5rem;
+    color: #EDC126;
 }
 
 .space-hobbies {
