@@ -1,9 +1,11 @@
-import { onCleanup, onMount } from "solid-js";
+import { createSignal, onCleanup, onMount } from "solid-js";
 import type { Component } from "solid-js";
 
 const App: Component = () => {
   let alertClass: HTMLDivElement | undefined;
   let timeout: number;
+
+  let [submitting, setSubmitting] = createSignal(false);
 
   const setSuccess = (msg: string) => {
     if (!alertClass) return;
@@ -587,28 +589,41 @@ const App: Component = () => {
                 class="mx-auto w-full px-2 md:w-3/4 text-white"
                 onSubmit={(e) => {
                   e.preventDefault();
+
+                  if (submitting()) return;
+
                   let form = e.target as HTMLFormElement;
                   let formData = {
                     // @ts-ignore
-                    name: form.name.value,
-                    email: form.email.value,
-                    message: form.message.value,
+                    name: form.name.value.trim(),
+                    email: form.email.value.trim(),
+                    message: form.message.value.trim(),
                   };
 
-                  // @ts-ignore
-                  console.log(formData);
+                  setSubmitting(true);
 
                   // send formdata to backend
-                  fetch("", {
+                  fetch("http://localhost:5173/contact", {
                     method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
                     body: JSON.stringify(formData),
-                  }).then((res) => {
-                    if (res.status === 200) {
-                      setSuccess("Message sent successfully!");
-                    } else {
+                  })
+                    .then((res) => {
+                      if (res.status === 200) {
+                        setSuccess("Message sent successfully!");
+                        form.reset();
+                      } else {
+                        setError("Message failed to send.");
+                      }
+                    })
+                    .catch((_err) => {
                       setError("Message failed to send.");
-                    }
-                  });
+                    })
+                    .finally(() => {
+                      setSubmitting(false);
+                    });
                 }}
               >
                 <div>
@@ -667,6 +682,7 @@ const App: Component = () => {
                 <button
                   type="submit"
                   class="md:w-1/4 w-full border-primary-cyan text-primary-cyan border-2 py-1 px-2 rounded-lg hover:bg-primary-cyan hover:text-white transition-colors"
+                  disabled={submitting()}
                 >
                   Send
                 </button>

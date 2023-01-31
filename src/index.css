@@ -18,10 +18,13 @@
 
 .upper-ellipse-gradient {
   background: radial-gradient(50% 50% at 50% 50%, rgba(191, 69, 235, 0.18) 19.27%, rgba(19, 0, 90, 0) 100%);
+  animation: bubble 2s ease-in-out infinite alternate;
 }
 
 .lower-ellipse-gradient {
   background: radial-gradient(50% 50% at 50% 50%, rgba(73, 69, 235, 0.39) 0%, rgba(73, 69, 235, 0.18) 56.77%, rgba(19, 0, 90, 0) 100%);
+  animation: bubble 2s ease-in-out infinite alternate;
+  animation-delay: 1s;
 }
 
 .highlight-gradient {
@@ -45,4 +48,46 @@
   background: radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(105, 59, 147, 0.4) 0%, rgba(110, 191, 244, 0.0847917) 77.08%, rgba(70, 144, 213, 0) 100%);
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
+}
+
+@keyframes switchColorUpper {
+  0% {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(191, 69, 235, 0.18) 19.27%, rgba(19, 0, 90, 0) 100%);
+  }
+
+  50% {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(73, 69, 235, 0.39) 0%, rgba(73, 69, 235, 0.18) 56.77%, rgba(19, 0, 90, 0) 100%);
+  }
+
+  100% {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(73, 69, 235, 0.39) 0%, rgba(73, 69, 235, 0.18) 56.77%, rgba(19, 0, 90, 0) 100%);
+  }
+}
+
+@keyframes switchColorLower {
+  0% {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(73, 69, 235, 0.39) 0%, rgba(73, 69, 235, 0.18) 56.77%, rgba(19, 0, 90, 0) 100%);
+  }
+
+  50% {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(191, 69, 235, 0.18) 19.27%, rgba(19, 0, 90, 0) 100%);
+  }
+
+  100% {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(191, 69, 235, 0.18) 19.27%, rgba(19, 0, 90, 0) 100%);
+  }
+}
+
+@keyframes bubble {
+  0% {
+    scale: 1;
+  }
+
+  50% {
+    scale: 1.2;
+  }
+
+  100% {
+    scale: 1;
+  }
 }
