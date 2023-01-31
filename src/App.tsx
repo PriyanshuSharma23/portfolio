@@ -1,6 +1,8 @@
 import { createSignal, onCleanup, onMount } from "solid-js";
 import type { Component } from "solid-js";
 
+const SERVER_URL = "https://portfolio-seven-flame-70.vercel.app";
+
 const App: Component = () => {
   let alertClass: HTMLDivElement | undefined;
   let timeout: number;
@@ -603,7 +605,7 @@ const App: Component = () => {
                   setSubmitting(true);
 
                   // send formdata to backend
-                  fetch("http://localhost:5173/contact", {
+                  fetch(`${SERVER_URL}/contact`, {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json",
