@@ -6,6 +6,7 @@ const SERVER_URL = "https://portfolio-seven-flame-70.vercel.app";
 const App: Component = () => {
   let alertClass: HTMLDivElement | undefined;
   let timeout: number;
+  let nav: HTMLElement | undefined;
 
   let [submitting, setSubmitting] = createSignal(false);
 
@@ -42,44 +43,16 @@ const App: Component = () => {
   };
 
   onMount(() => {
-    // add event listener for scroll position
-    // if > 100px, add class to header
-    // else remove class from header
-
     let classes = ["bg-blue-900/50", "shadow-md"];
-
-    const header = document.querySelector("header") as HTMLElement;
-    let prevScrollPos = window.scrollY;
-
-    const fn = (close: boolean) => {
-      if (close) {
-        header.classList.add("-translate-y-full");
-      } else {
-        header.classList.remove("-translate-y-full");
-      }
-    };
 
     window.addEventListener("scroll", () => {
       let currentScrollPos = window.scrollY;
 
       if (currentScrollPos > 100) {
-        header.classList.add(...classes);
+        nav?.classList.add(...classes);
       } else {
-        header.classList.remove(...classes);
+        nav?.classList.remove(...classes);
       }
-
-      // if (prevScrollPos > currentScrollPos) {
-      //   fn(false);
-      // } else {
-      //   let timeout;
-
-      //   clearTimeout(timeout);
-
-      //   timeout = setTimeout(() => {
-      //     fn(true);
-      //   }, 1000);
-      // }
-      // prevScrollPos = currentScrollPos;
     });
   });
 
@@ -90,29 +63,32 @@ const App: Component = () => {
 
   return (
     <>
-      <header class="px-3 py-2 flex justify-between items-center fixed top-0 left-0 right-0 z-10 transition-all">
+      <header
+        ref={nav}
+        class="fixed top-0 left-0 right-0 z-10 flex items-center justify-between px-3 py-2 backdrop-blur-sm transition-all"
+      >
         <a href="#">
-          <h1 class="font-['Pacifico'] text-2xl gradient-text inline-block">
+          <h1 class="gradient-text inline-block font-['Pacifico'] text-2xl">
             PS
           </h1>
         </a>
 
-        <div class="flex gap-1 items-center text-primary-offwhite">
+        <div class="flex items-center gap-1 text-primary-offwhite">
           <a
             href="#my-work"
-            class="text-xs md:text-base  px-2 py-1 rounded-full min-w-5 min-h-5"
+            class="min-w-5 min-h-5  rounded-full px-2 py-1 text-xs md:text-base"
           >
             My Work
           </a>
           <a
             href="#achievements"
-            class="text-xs md:text-base px-2 py-1 rounded-full min-w-5 min-h-5"
+            class="min-w-5 min-h-5 rounded-full px-2 py-1 text-xs md:text-base"
           >
             Achievements
           </a>
           <a
             href="#contact"
-            class="text-xs md:text-base  px-2 py-1 rounded-full min-w-5 min-h-5"
+            class="min-w-5 min-h-5  rounded-full px-2 py-1 text-xs md:text-base"
           >
             Contact
           </a>
@@ -121,23 +97,23 @@ const App: Component = () => {
 
       <main class="overflow-x-hidden">
         {/* hero */}
-        <section class="hero flex flex-col justify-start pt-2 pb-4 items-center font-[Montserrat] min-h-screen relative overflow-hidden">
-          <h2 class="text-4xl font-bold text-center text-primary-cyan mt-20 mb-1">
+        <section class="hero relative flex min-h-screen flex-col items-center justify-start overflow-hidden pt-2 pb-4 font-[Montserrat]">
+          <h2 class="mt-20 mb-1 text-center text-4xl font-bold text-primary-cyan">
             Priyanshu Sharma
           </h2>
-          <div class="relative inline-block mb-6">
-            <p class="text-center text-white text-xl font-medium italic">
+          <div class="relative mb-6 inline-block">
+            <p class="text-center text-xl font-medium italic text-white">
               full stack developer
             </p>
-            <div class="absolute w-[95px] h-1 bg-primary-cyan left-0 transform -translate-y-1/2 shadow-md shadow-primary-cyan rounded-full animate-pulse duration-75"></div>
+            <div class="absolute left-0 h-1 w-[95px] -translate-y-1/2 transform animate-pulse rounded-full bg-primary-cyan shadow-md shadow-primary-cyan duration-75"></div>
           </div>
-          <p class="inline-block max-w-[45ch] text-white text-center px-1">
+          <p class="inline-block max-w-[45ch] px-1 text-center text-white">
             full time tech enthusiast providing services for building apps and
             websites.
           </p>
 
           {/* social links */}
-          <div class="flex gap-4 mt-6">
+          <div class="mt-6 flex gap-4">
             <a href="https://twitter.com/Priyans05834140" target="_blank">
               <svg
                 width="50"
@@ -187,47 +163,47 @@ const App: Component = () => {
 
           {/* avatar image */}
           <div class="relative mt-auto pb-10">
-            <div class="w-[45vh] h-[45vh] rounded-full internal-avatar flex justify-center items-center ">
+            <div class="internal-avatar flex h-[45vh] w-[45vh] items-center justify-center rounded-full ">
               <img
-                class="w-[45vh] h-[45vh] object-cover rotate-180"
+                class="h-[45vh] w-[45vh] rotate-180 object-cover"
                 src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/hi.webp?alt=media&token=745d149a-4d77-4014-a7f8-b340ff0dc469"
                 alt="Hi Bitmoji"
               />
             </div>
-            <div class="w-[70vh] h-[70vh] -z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  rounded-full highlight-gradient flex justify-center items-center bg-opacity-10 "></div>
+            <div class="highlight-gradient absolute top-1/2 left-1/2 -z-10 flex h-[70vh] w-[70vh]  -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-opacity-10 "></div>
           </div>
 
           {/* ellipse 1 */}
-          <div class="w-[100vw] h-[100vw]  absolute -z-10 -right-[45vw] -top-[40vw] rounded-full upper-ellipse-gradient"></div>
+          <div class="upper-ellipse-gradient absolute  -right-[45vw] -top-[40vw] -z-10 h-[100vw] w-[100vw] rounded-full"></div>
 
           {/* ellipse 2 */}
-          <div class="w-[100vw] h-[100vw]  absolute -z-10 -left-[45vw] -bottom-[40vw]  rounded-full lower-ellipse-gradient"></div>
+          <div class="lower-ellipse-gradient absolute  -left-[45vw] -bottom-[40vw] -z-10 h-[100vw]  w-[100vw] rounded-full"></div>
         </section>
 
         {/* <hr class="border-white" /> */}
         {/* <!-- My Work and Projects Section --> */}
         <section
-          class="min-h-screen pt-11 flex flex-col px-2 mx-auto max-w-7xl overflow-x-hidden"
+          class="mx-auto min-h-screen max-w-7xl overflow-x-hidden px-2 pt-5"
           id="my-work"
         >
           {/* <!-- Section heading --> */}
-          <h2 class="text-3xl mb-4 md:text-4xl font-bold text-center gradient-text-section-heading font-[Montserrat]">
+          <h2 class="gradient-text-section-heading mb-6 text-center font-[Montserrat] text-3xl font-bold md:text-4xl">
             My Work
           </h2>
 
           {/* <!-- projects --> */}
-          <article class="flex flex-col gap-4 md:flex-row justify-around items-center md:items-start mb-10">
+          <article class="mb-10 flex flex-col items-center justify-around gap-4 md:flex-row md:items-start">
             <div class="md:w-max">
-              <p class="text-md md:text-lg font-semibold text-secondary-purple">
+              <p class="text-md font-semibold text-secondary-purple md:text-lg">
                 Featured Project
               </p>
-              <div class="flex text-3xl md:text-4xl items-center">
-                <h2 class=" text-primary-offwhite mr-4">
+              <div class="flex items-center text-3xl md:text-4xl">
+                <h2 class=" mr-4 text-primary-offwhite">
                   AIRG's Website
                   {/* <!-- unlink --> */}
                   <a href="https://airg-nsut.netlify.app/" target="_blank">
                     <svg
-                      class=" fill-primary-offwhite hover:fill-blue-400 mr-2 inline"
+                      class=" mr-2 inline fill-primary-offwhite hover:fill-blue-400"
                       stroke="currentColor"
                       fill="currentColor"
                       stroke-width="0"
@@ -258,12 +234,12 @@ const App: Component = () => {
                 </h2>
               </div>
               {/* <!-- card --> */}
-              <div class="w-full glass mt-4 px-2 py-3 border-white/60 rounded-md border lg:max-w-xl flex-shrink-0">
-                <p class=" text-white text-lg ">
+              <div class="glass mt-4 w-full flex-shrink-0 rounded-md border border-white/60 px-2 py-3 lg:max-w-xl">
+                <p class=" text-lg text-white ">
                   A website made for AIRG, NSUT. It is made in NextJS and uses
                   three js to display the stunning visuals
                 </p>
-                <div class="flex mt-4 gap-2">
+                <div class="mt-4 flex gap-2">
                   <img
                     src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/js.png?alt=media&token=52d68c5b-7376-48bb-882a-767249b1a96f"
                     alt="javascript logo"
@@ -289,18 +265,18 @@ const App: Component = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/airg-project-screen.webp?alt=media&token=4ed915f2-8fe9-44d8-9b11-137eacc798a4"
                 alt="AIRG's Screenshots"
               />
-              <div class="absolute -left-[15vh] -z-10 -top-[10vh] w-[40vh] h-[40vh] rounded-full highlight-gradient bg-opacity-10 opacity-50  mt-auto" />
+              <div class="highlight-gradient absolute -left-[15vh] -top-[10vh] -z-10 mt-auto h-[40vh] w-[40vh] rounded-full bg-opacity-10  opacity-50" />
             </div>
           </article>
 
           {/* <!-- projects --> */}
-          <article class="flex flex-col gap-4 md:flex-row-reverse justify-around items-center md:items-start mb-10">
+          <article class="mb-10 flex flex-col items-center justify-around gap-4 md:flex-row-reverse md:items-start">
             <div class="md:w-max">
-              <p class="text-md md:text-lg font-semibold text-secondary-purple">
+              <p class="text-md font-semibold text-secondary-purple md:text-lg">
                 Featured Project
               </p>
-              <div class="flex text-3xl md:text-4xl items-center">
-                <h2 class=" text-primary-offwhite mr-4">
+              <div class="flex items-center text-3xl md:text-4xl">
+                <h2 class=" mr-4 text-primary-offwhite">
                   Rentit
                   {/* <!-- github --> */}
                   <a
@@ -321,29 +297,29 @@ const App: Component = () => {
                 </h2>
               </div>
               {/* <!-- card --> */}
-              <div class="w-full glass mt-4 px-2 py-3 border-white/60 rounded-md border lg:max-w-xl flex-shrink-0">
-                <p class=" text-white text-lg ">
+              <div class="glass mt-4 w-full flex-shrink-0 rounded-md border border-white/60 px-2 py-3 lg:max-w-xl">
+                <p class=" text-lg text-white ">
                   A cross platform app, which aims to provide students with
                   housing near our college
                 </p>
                 <div class="mt-4 gap-2">
                   <img
-                    class="inline-block mr-1"
+                    class="mr-1 inline-block"
                     src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/dart.png?alt=media&token=36e9098b-7613-49ea-941e-346dfd66dd3d"
                     alt="dart logo"
                   />
                   <img
-                    class="inline-block mr-1"
+                    class="mr-1 inline-block"
                     src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/flutter.png?alt=media&token=91ff755e-f94d-4b3a-98ec-62b3337d8d2b"
                     alt="flutter logo"
                   />
                   <img
-                    class="inline-block mr-2"
+                    class="mr-2 inline-block"
                     src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/firebase.png?alt=media&token=b2e3c552-4c78-4fed-9b67-3b1572e96396"
                     alt="firebase logo"
                   />
                   <img
-                    class="inline-block mr-1"
+                    class="mr-1 inline-block"
                     src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/nodejs.png?alt=media&token=1a8f747d-0747-45f1-9737-e0bf35aa33f3"
                     alt="nodejs logo"
                   />
@@ -356,21 +332,21 @@ const App: Component = () => {
                 src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/rentit-ss.webp?alt=media&token=721b9926-d658-40a4-87c0-22417ab7eecf"
                 alt="Rentit's Screenshots"
               />
-              <div class="absolute -right-[15vh] -z-10 -top-[10vh] w-[40vh] h-[40vh] rounded-full highlight-gradient bg-opacity-10 opacity-50  mt-auto" />
+              <div class="highlight-gradient absolute -right-[15vh] -top-[10vh] -z-10 mt-auto h-[40vh] w-[40vh] rounded-full bg-opacity-10  opacity-50" />
             </div>
           </article>
 
           {/* <!-- view more projects in my github --> */}
-          <div class="flex justify-center mt-4 group">
+          <div class="group mt-4 flex justify-center">
             <a
               href="https://github.com/PriyanshuSharma23"
               target="_blank"
-              class="text-primary-offwhite text-lg font-bold group-hover:text-blue-400"
+              class="text-lg font-bold text-primary-offwhite group-hover:text-blue-400"
             >
               View More Projects
             </a>
             <svg
-              class="ml-2 fill-primary-offwhite group-hover:fill-blue-400 mr-2 inline"
+              class="ml-2 mr-2 inline fill-primary-offwhite group-hover:fill-blue-400"
               stroke="currentColor"
               fill="currentColor"
               stroke-width="0"
@@ -388,70 +364,70 @@ const App: Component = () => {
 
         {/* <!-- Achievements Section --> */}
         <section
-          class="min-h-screen pt-11 flex flex-col px-2 mx-auto max-w-6xl overflow-x-hidden"
+          class="mx-auto min-h-screen max-w-6xl overflow-x-hidden px-2 pt-5"
           id="achievements"
         >
           {/* <!-- Section heading --> */}
-          <h2 class="text-3xl mb-4 md:text-4xl font-bold text-center gradient-text-section-heading font-[Montserrat]">
+          <h2 class="gradient-text-section-heading mb-4 text-center font-[Montserrat] text-3xl font-bold md:text-4xl">
             Achievements & Skills
           </h2>
-          <article class="grid grid-cols-1 md:grid-cols-2 mt-4 gap-8">
+          <article class="mt-4 grid grid-cols-1 gap-8 md:grid-cols-2">
             {/* <!-- card 1 --> */}
-            <div class="w-full  p-3 mettalic-linear-gradient flex justify-between relative">
+            <div class="mettalic-linear-gradient  relative flex w-full justify-between p-3">
               <img
-                class="flex-shrink-0 w-16 h-16"
+                class="h-16 w-16 flex-shrink-0"
                 src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/intern-logo.png?alt=media&token=b5c91a9d-dfce-4181-b3b5-67d76c6151ab"
                 alt="cup"
               />
-              <p class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-offwhite text-lg font-bold text-center flex-grow flex flex-col justify-center items-center">
+              <p class="absolute left-1/2 top-1/2 flex flex-grow -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center text-center text-lg font-bold text-primary-offwhite">
                 Tech Intern at PerceptionAI
               </p>
             </div>
 
             {/* <!-- card 2 --> */}
-            <div class="w-full  p-3 mettalic-linear-gradient flex justify-between relative">
+            <div class="mettalic-linear-gradient  relative flex w-full justify-between p-3">
               <img
-                class="flex-shrink-0 w-16 h-16"
+                class="h-16 w-16 flex-shrink-0"
                 src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/achievement-logo.png?alt=media&token=94f46b83-f9d7-4bed-9d61-0eacc8d24bcf"
                 alt="pedestal"
               />
-              <p class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-offwhite text-lg font-bold text-center flex-grow flex flex-col justify-center items-center">
+              <p class="absolute left-1/2 top-1/2 flex flex-grow -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center text-center text-lg font-bold text-primary-offwhite">
                 1st Place Amity CyberCup
               </p>
             </div>
 
             {/* <!-- card 3 --> */}
-            <div class="w-full  p-3 mettalic-linear-gradient flex justify-between relative">
+            <div class="mettalic-linear-gradient  relative flex w-full justify-between p-3">
               <img
-                class="flex-shrink-0 w-16 h-16"
+                class="h-16 w-16 flex-shrink-0"
                 src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/achievement-logo.png?alt=media&token=94f46b83-f9d7-4bed-9d61-0eacc8d24bcf"
                 alt="pedestal"
               />
-              <p class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-offwhite text-lg font-bold text-center flex-grow flex flex-col justify-center items-center">
+              <p class="absolute left-1/2 top-1/2 flex flex-grow -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center text-center text-lg font-bold text-primary-offwhite">
                 Won IIITD Solana Hackaday
               </p>
             </div>
 
             {/* <!-- card 4 --> */}
-            <div class="w-full  p-3 mettalic-linear-gradient flex justify-between relative">
+            <div class="mettalic-linear-gradient  relative flex w-full justify-between p-3">
               <img
-                class="flex-shrink-0 w-16 h-16"
+                class="h-16 w-16 flex-shrink-0"
                 src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/education-logo.png?alt=media&token=6ee160e8-3acb-4129-9e12-47234ccde678"
                 alt="lightbulb"
               />
-              <p class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary-offwhite text-lg font-bold text-center flex-grow flex flex-col justify-center items-center">
+              <p class="absolute left-1/2 top-1/2 flex flex-grow -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center text-center text-lg font-bold text-primary-offwhite">
                 2nd Year Student NSUT
               </p>
             </div>
           </article>
           <article>
-            <h3 class="text-2xl font-thin mt-10 mb-4 md:text-3xl text-center text-white">
+            <h3 class="mt-10 mb-4 text-center text-2xl font-thin text-white md:text-3xl">
               Skill Board
             </h3>
             {/* <!-- <div class="md:max-w-xl grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-7 gap-4 mx-auto place-items-center "> --> */}
-            <div class="md:max-w-xl flex flex-wrap justify-center mx-auto gap-4">
+            <div class="mx-auto flex flex-wrap justify-center gap-4 md:max-w-xl">
               {/* <!-- figma --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="h-10"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/figma.png?alt=media&token=70abd316-51b4-45c3-bc7b-28f728d2409e"
@@ -459,7 +435,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- react --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="h-10"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/react.png?alt=media&token=3ab1c731-1400-49fa-8403-b077a936e4d4"
@@ -467,7 +443,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- C --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="h-10"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/c.png?alt=media&token=123c2dda-58fa-4276-9b8f-5cf0bdd17227"
@@ -475,7 +451,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- nodejs --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="h-10"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/nodejs.png?alt=media&token=1a8f747d-0747-45f1-9737-e0bf35aa33f3"
@@ -483,7 +459,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- nodejs --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="h-8"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/flutter.png?alt=media&token=91ff755e-f94d-4b3a-98ec-62b3337d8d2b"
@@ -491,7 +467,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- javascript --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="h-8"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/js.png?alt=media&token=52d68c5b-7376-48bb-882a-767249b1a96f"
@@ -499,7 +475,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- tailwind--> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="w-8"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/tailwindcss.png?alt=media&token=7278ea33-abe2-4438-a031-bb29a0aea7c1"
@@ -507,7 +483,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- python --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="w-8"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/python.png?alt=media&token=83dd32d4-de47-4449-af62-6bc9aaf44c6e"
@@ -515,7 +491,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- NextJS --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="h-10"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/next.png?alt=media&token=68093f64-4346-42b5-b57e-65a7553b3ed9"
@@ -523,7 +499,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- solidjs --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="w-8"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/solidjs.png?alt=media&token=6d9098ab-b7c4-490f-8a89-73587fab673c"
@@ -531,7 +507,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- firebase --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="h-8"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/firebase.png?alt=media&token=b2e3c552-4c78-4fed-9b67-3b1572e96396"
@@ -539,7 +515,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- express js --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="w-14"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/express.png?alt=media&token=3c60e291-4dc6-4d56-b69b-0cde010c3804"
@@ -547,7 +523,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- mongo db --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <img
                   class="w-14"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/mongodb.png?alt=media&token=d8eb8002-4bed-4d5a-87cc-2ba8b57ee511"
@@ -555,7 +531,7 @@ const App: Component = () => {
                 />
               </div>
               {/* <!-- Typescript --> */}
-              <div class="w-16 h-16 bg-secondary-violet/70 rounded-full flex justify-center items-center">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-secondary-violet/70">
                 <svg
                   class="h-8 fill-blue-500"
                   viewBox="0 0 27 26"
@@ -576,22 +552,18 @@ const App: Component = () => {
         {/* <!-- <hr class="border-white mt-4"> --> */}
 
         {/* <!-- Contact Me Section --> */}
-        <section
-          class="min-h-screen pt-11 flex flex-col px-2 mx-auto max-w-6xl"
-          id="contact"
-        >
+        <section class="mx-auto min-h-screen max-w-6xl px-2 pt-5" id="contact">
           {/* <!-- Section heading --> */}
-          <h2 class="text-3xl mb-4 md:text-4xl font-bold text-center gradient-text-section-heading font-[Montserrat]">
+          <h2 class="gradient-text-section-heading mb-4 text-center font-[Montserrat] text-3xl font-bold md:text-4xl">
             Let's Talk
           </h2>
-          <article class="p-4 flex flex-col md:flex-row-reverse justify-around items-center gap-4 mt-8">
+          <article class="mt-8 flex flex-col items-center justify-around gap-4 p-4 md:flex-row-reverse">
             <div class="w-full flex-grow">
               <form
                 action=""
-                class="mx-auto w-full px-2 md:w-3/4 text-white"
+                class="mx-auto w-full px-2 text-white md:w-3/4"
                 onSubmit={(e) => {
                   e.preventDefault();
-
                   if (submitting()) return;
 
                   let form = e.target as HTMLFormElement;
@@ -642,7 +614,7 @@ const App: Component = () => {
                     type="text"
                     name="name"
                     id="name"
-                    class="px-2 py-1 w-full bg-primary-cyan/30 border-primary-cyan border-2 h-10 rounded-lg"
+                    class="h-10 w-full rounded-lg border-2 border-primary-cyan bg-primary-cyan/30 px-2 py-1"
                   />
                 </div>
                 <br />
@@ -660,7 +632,7 @@ const App: Component = () => {
                     type="email"
                     name="email"
                     id="email"
-                    class="px-2 py-1 w-full bg-primary-cyan/30 border-primary-cyan border-2 h-10 rounded-lg"
+                    class="h-10 w-full rounded-lg border-2 border-primary-cyan bg-primary-cyan/30 px-2 py-1"
                   />
                 </div>
                 <br />
@@ -677,13 +649,13 @@ const App: Component = () => {
                     placeholder="What's your obsession with John Doe?"
                     name="message"
                     id="message"
-                    class="px-2 py-1 w-full bg-primary-cyan/30 border-primary-cyan border-2 h-20 rounded-lg"
+                    class="h-20 w-full rounded-lg border-2 border-primary-cyan bg-primary-cyan/30 px-2 py-1"
                   ></textarea>
                 </div>
                 <br />
                 <button
                   type="submit"
-                  class="md:w-1/4 w-full border-primary-cyan text-primary-cyan border-2 py-1 px-2 rounded-lg hover:bg-primary-cyan hover:text-white transition-colors"
+                  class="w-full rounded-lg border-2 border-primary-cyan py-1 px-2 text-primary-cyan transition-colors hover:bg-primary-cyan hover:text-white md:w-1/4"
                   disabled={submitting()}
                 >
                   Send
@@ -692,7 +664,7 @@ const App: Component = () => {
             </div>
 
             <div class="relative">
-              <div class=" w-[50vh] h-[50vh] lg:w-[50vh] lg:h-[50vh] md:w-[50vw] md:h-[50vw] -z-10   rounded-full highlight-gradient flex justify-center items-center bg-opacity-10">
+              <div class=" highlight-gradient -z-10 flex h-[50vh] w-[50vh] items-center justify-center   rounded-full bg-opacity-10 md:h-[50vw] md:w-[50vw] lg:h-[50vh] lg:w-[50vh]">
                 <img
                   class=" object-cover"
                   src="https://firebasestorage.googleapis.com/v0/b/deathwish-2ae85.appspot.com/o/contact-bitmoji.png?alt=media&token=b3b8d0b6-4a92-42d2-bed6-bd183d3603cc"
@@ -703,12 +675,12 @@ const App: Component = () => {
           </article>
         </section>
 
-        <footer class="w-screen text-white flex flex-col items-center justify-center py-4">
+        <footer class="flex w-screen flex-col items-center justify-center py-4 text-white">
           <p class="text-sm">
             Made with ❤️ by
             <a
               href="#"
-              class="text-primary-cyan hover:text-primary-cyan/50 transition-colors ml-2"
+              class="ml-2 text-primary-cyan transition-colors hover:text-primary-cyan/50"
             >
               Priyanshu
             </a>
@@ -717,7 +689,7 @@ const App: Component = () => {
       </main>
 
       <div
-        class="fixed bottom-4 left-4 text-white rounded-lg px-4 py-2 flex items-center justify-between "
+        class="fixed bottom-4 left-4 flex items-center justify-between rounded-lg px-4 py-2 text-white "
         data-alert
         ref={alertClass}
       ></div>
