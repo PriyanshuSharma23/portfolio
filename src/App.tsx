@@ -114,7 +114,7 @@ const App: Component = () => {
 
           {/* social links */}
           <div class="mt-6 flex gap-4">
-            <a href="https://twitter.com/Priyans05834140" target="_blank">
+            <a href="https://twitter.com/whyme_code" target="_blank">
               <svg
                 width="50"
                 height="51"
